@@ -1,5 +1,4 @@
-const UserManagerMongo = require ('../dao/Mongo/usersManagerMongo.js')
-const userService = new UserManagerMongo ()
+const UserManagerMongo = require ('../daos/Mongo/usersManagerMongo')
 
 
 class UserController {

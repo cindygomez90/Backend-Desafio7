@@ -3,11 +3,11 @@ const { productModel }  = require ("../models/products.model")
 class ProductManagerMongo {
     
     async getProducts() {
-        return await productModel.find({})
+        return await productModel.find({status: true})
     }
 
-    async getProduct (pid) {
-        return await productModel.findOne ({_id:pid})
+    async getProduct (filter) {
+        return await productModel.findOne (filter)
     }
 
     async createProduct (productNew) {
@@ -19,7 +19,7 @@ class ProductManagerMongo {
     }
 
     async deleteProduct (pid) {
-        return await productModel.findByIdAndUpdate(pid, {status: false})
+        return await productModel.findByIdAndUpdate({_id: pid}, {status: false}, {new: true})
     }
 }
 

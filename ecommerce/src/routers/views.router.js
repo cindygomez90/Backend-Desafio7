@@ -1,14 +1,14 @@
 //importación de módulos
 const { Router } = require ("express")
 const viewsRouter = Router()
-const CartsManagerMongo = require ('../dao/Mongo/cartsManagerMongo')
+const CartsManagerMongo = require ('../daos/Mongo/cartsManagerMongo')
 const cartService = new CartsManagerMongo ()
-const ProductManagerMongo = require ('../dao/Mongo/productsManagerMongo')
+const ProductManagerMongo = require ('../daos/Mongo/productsManagerMongo')
 const productService = new ProductManagerMongo ()
-const MessageManagerMongo = require ('../dao/Mongo/messagesManagerMongo')
+const MessageManagerMongo = require ('../daos/Mongo/messagesManagerMongo')
 const messageService = new MessageManagerMongo ()
-const { productModel} = require ("../dao/models/products.model")
-const { cartModel} = require ('../dao/models/carts.model')
+const { productModel} = require ("../daos/models/products.model")
+const { cartModel} = require ('../daos/models/carts.model')
 
 //Mongo - ruta para home.handlebars
 viewsRouter.get('/home', async (req, res) => {

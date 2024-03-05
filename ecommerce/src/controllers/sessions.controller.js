@@ -1,16 +1,14 @@
-const UserManagerMongo = require("../dao/Mongo/usersManagerMongo")
 const bcrypt = require('bcrypt')
-const UserManagerMongo = require ('../dao/Mongo/usersManagerMongo')
-const ProductManagerMongo = require ('../dao/Mongo/productsManagerMongo')
 const { generateToken }  = require ('../utils/jsonwebtoken')
+const UserManagerMongo = require("../daos/Mongo/usersManagerMongo")
+const ProductManagerMongo = require ('../daos/Mongo/productsManagerMongo')
 
-const sessionService = new UserManagerMongo ()
-const productService = new ProductManagerMongo ()
 
 class SessionController {
 
     constructor () {
         this.sessionService = new UserManagerMongo ()
+        this.productService = new ProductManagerMongo ()
     }
 
     register = async (request, responses)=>{
@@ -89,7 +87,7 @@ class SessionController {
             httpOnly: true 
         })
     
-        const products = await productService.getProducts()
+        const products = await this.productService.getProducts()
         res.render('products', { user: user, products})
     }
 
@@ -127,7 +125,7 @@ class SessionController {
     GitHub = async(request, responses) => {
         console.log('request.user:', request.user)
         const user = request.user.user
-        const products = await productService.getProducts()
+        const products = await this.productService.getProducts()
         responses.render('products', { user: user, products })
     }
 

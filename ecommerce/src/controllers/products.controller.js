@@ -1,7 +1,4 @@
-const { productModel } = require ("../dao/models/products.model")
 const ProductManagerMongo = require ('../dao/Mongo/productsManagerMongo')
-
-const productService = new ProductManagerMongo ()
 
 
 class ProductController {
@@ -38,7 +35,7 @@ class ProductController {
                 nextPage,
                 page,
                 totalPages,
-            } = await productModel.paginate(filter, { limit, page: pageQuery, sort: sortOptions, lean: true })
+            } = await this.productService.getProducts(filter, { limit, page: pageQuery, sort: sortOptions, lean: true })
     
             res.json({
                 status: 'success',

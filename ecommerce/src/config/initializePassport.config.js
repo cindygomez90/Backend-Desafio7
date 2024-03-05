@@ -3,7 +3,7 @@ const passport = require ('passport')
 const { Strategy, ExtractJwt } = require ('passport-jwt') 
 const { PRIVATE_KEY, generateToken } = require ('../utils/jsonwebtoken')
 const GithubStrategy = require('passport-github2') 
-const UserManagerMongo = require ('../dao/Mongo/usersManagerMongo')
+const UserManagerMongo = require ('../daos/Mongo/usersManagerMongo')
 const sessionService = new UserManagerMongo ()
 
 

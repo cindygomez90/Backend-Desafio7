@@ -1,15 +1,13 @@
-const CartsManagerMongo = require ('../dao/Mongo/cartsManagerMongo')
-const ProductManagerMongo = require ('../dao/Mongo/productsManagerMongo')
-
-const cartService = new CartsManagerMongo ()
-const productService = new ProductManagerMongo ()
+const CartsManagerMongo = require ('../daos/Mongo/cartsManagerMongo')
+const ProductManagerMongo = require ('../daos/Mongo/productsManagerMongo')
 
 
 
 class CartController {
 
     constructor () {
-        this.cartService = new UserManagerMongo () 
+        this.cartService = new CartsManagerMongo () 
+        this.productService = new ProductManagerMongo ()
     }
 
     createCart = async (req, res)=> {
@@ -51,7 +49,7 @@ class CartController {
                 })
             }
     
-            const product = await productService.getProduct (pid)
+            const product = await this.productService.getProduct (pid)
             if (!product) {
                 return res.status(404).json({
                     status: 'error',
